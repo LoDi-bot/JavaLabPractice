@@ -50,6 +50,9 @@ public class CoursesRepositoryJdbcImpl implements CoursesRepository {
     //language=SQL
     private static final String SQL_SAVE = "insert into course(name, beginning, ending, teacher_id)  values(?, ?, ?, ?)";
 
+    //language=SQL
+    private static final String SQL_DELETE_BY_ID = "delete  from course where id = ?";
+
     private DataSource dataSource;
 
     public CoursesRepositoryJdbcImpl(DataSource dataSource) {
@@ -66,7 +69,7 @@ public class CoursesRepositoryJdbcImpl implements CoursesRepository {
             CoursesStudentsRepositoryJdbcImpl coursesStudentsRepositoryJdbc = new CoursesStudentsRepositoryJdbcImpl(this.dataSource);
             List<Integer> students_id = coursesStudentsRepositoryJdbc.findStudentsIdByCourseId(id);
 
-            return new Course(id, name, beginning, ending, teacher_id,students_id);
+            return new Course(id, name, beginning, ending, teacher ,students);
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -380,7 +383,7 @@ public class CoursesRepositoryJdbcImpl implements CoursesRepository {
             statement.executeUpdate();
 
             CoursesStudentsRepository coursesStudentsRepository = new CoursesStudentsRepositoryJdbcImpl(this.dataSource);
-            coursesStudentsRepository.updateStudentsIdByCourseId(course.getStudents_id(), course.getId());
+            coursesStudentsRepository.insertStudentsIdByCourseId(course.getStudents_id(), course.getId());
 
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
@@ -405,6 +408,27 @@ public class CoursesRepositoryJdbcImpl implements CoursesRepository {
 
             CoursesStudentsRepository coursesStudentsRepository = new CoursesStudentsRepositoryJdbcImpl(this.dataSource);
             coursesStudentsRepository.updateStudentsIdByCourseId(course.getStudents_id(), course.getId());
+
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    public void delete(Course course) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
+
+            statement.setInt(1, course.getId());
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows != 1) {
+                throw new SQLException("Exception in <DeleteCourse>");
+            }
+
+            CoursesStudentsRepository coursesStudentsRepository = new CoursesStudentsRepositoryJdbcImpl(this.dataSource);
+            coursesStudentsRepository.deleteStudentsIdByCourseId(course.getId());
 
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);

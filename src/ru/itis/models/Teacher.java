@@ -1,20 +1,20 @@
 package ru.itis.models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Teacher {
     private Integer id;
     private String first_name;
     private String las_name;
     private Integer experience;
-    private ArrayList<Integer> courses_id;
+    private List<Course> courses;
 
-    public Teacher(Integer id, String first_name, String las_name, Integer experiene, ArrayList<Integer> courses_id) {
+    public Teacher(Integer id, String first_name, String las_name, Integer experiene, List<Course> courses) {
         this.id = id;
         this.first_name = first_name;
         this.las_name = las_name;
         this.experience = experiene;
-        this.courses_id = courses_id;
+        this.courses = courses;
     }
 
     public Integer getId() {
@@ -41,20 +41,20 @@ public class Teacher {
         this.las_name = las_name;
     }
 
-    public Integer getExperiene() {
+    public Integer getExperience() {
         return experience;
     }
 
-    public void setExperiene(Integer experiene) {
-        this.experience = experiene;
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 
-    public ArrayList<Integer> getCourses_id() {
-        return courses_id;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setCourses_id(ArrayList<Integer> courses_id) {
-        this.courses_id = courses_id;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Teacher {
                 ", first_name='" + first_name + '\'' +
                 ", las_name='" + las_name + '\'' +
                 ", experiene=" + experience +
-                ", courses_id=" + courses_id.toString() +
+                ", courses_id=" + courses.toString() +
                 '}';
     }
 }

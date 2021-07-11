@@ -154,4 +154,17 @@ public class CoursesStudentsRepositoryJdbcImpl implements CoursesStudentsReposit
         }
     }
 
+    @Override
+    public void deleteStudentsIdByCourseId(Integer course_id) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_DELETE_STUDENTS_ID_BY_COURSE_ID)) {
+
+            statement.setInt(1, course_id);
+
+            int affectedRows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
 }

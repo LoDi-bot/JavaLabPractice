@@ -27,4 +27,6 @@ public interface CoursesStudentsRepository {
 
     void insertStudentsIdByCourseId(List<Integer> students_id, Integer course_id);
 
+    void deleteStudentsIdByCourseId(Integer couurse_id);
+
 }

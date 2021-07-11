@@ -7,16 +7,16 @@ public class Course {
     private String name;
     private String beginning;
     private String ending;
-    private Integer teacher_id;
-    private List<Integer> students_id;
+    private Teacher teacher;
+    private List<Student> students;
 
-    public Course(Integer id, String name, String beginning, String ending, Integer teacher_id, List<Integer> students_id) {
+    public Course(Integer id, String name, String beginning, String ending, Teacher teacher, List<Student> students) {
         this.id = id;
         this.name = name;
         this.beginning = beginning;
         this.ending = ending;
-        this.teacher_id = teacher_id;
-        this.students_id = students_id;
+        this.teacher = teacher;
+        this.students = students;
     }
 
     public Integer getId() {
@@ -51,20 +51,20 @@ public class Course {
         this.ending = ending;
     }
 
-    public Integer getTeacher_id() {
-        return teacher_id;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacher_id(Integer teacher_id) {
-        this.teacher_id = teacher_id;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
-    public List<Integer> getStudents_id() {
-        return students_id;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudents_id(List<Integer> students_id) {
-        this.students_id = students_id;
+    public void setStudents_id(List<Student> students) {
+        this.students = students;
     }
 
     @Override
@@ -74,8 +74,8 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", beginning='" + beginning + '\'' +
                 ", ending='" + ending + '\'' +
-                ", teacher_id=" + teacher_id +
-                ", student_id=" + students_id.toString() +
+                ", teacher_id=" + teacher +
+                ", student_id=" + students.toString() +
                 '}';
     }
 }

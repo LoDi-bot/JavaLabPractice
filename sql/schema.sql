@@ -1,15 +1,15 @@
 create table teacher
 (
     id         serial primary key,
-    first_name varchar(20) not null default 'FIRST_NAME',
-    last_name  varchar(20) not null default 'LAST_NAME',
+    first_name varchar(30) not null default 'FIRST_NAME',
+    last_name  varchar(30) not null default 'LAST_NAME',
     experience integer     not null default 0
 );
 
 create table course
 (
     id         serial primary key,
-    name       varchar(20) not null default 'NAME',
+    name       varchar(30) not null default 'NAME',
     beginning  varchar(10) not null default 'BEGINNING',
     ending     varchar(10) not null default 'ENDING',
     teacher_id integer,
@@ -19,7 +19,7 @@ create table course
 create table lesson
 (
     id          serial primary key,
-    name        varchar(20) not null default 'NAME',
+    name        varchar(30) not null default 'NAME',
     day_of_week varchar(20) not null default 'DAY_OF_WEEK',
     time        varchar(11) not null default 'TIME',
     course_id   integer,
