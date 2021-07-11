@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import ru.itis.models.Course;
 import ru.itis.models.Student;
+import ru.itis.models.Teacher;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -26,6 +27,15 @@ public class CoursesRepositoryJdbcTemplateImpl implements CoursesRepository {
 
     //language=SQL
     private static final String SQL_SELECT_ALL_BY_COURSE_NAME = SQL_SELECT_ALL + " where d.name = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_BEGINNING = SQL_SELECT_ALL + " where beginning = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_ENDING = SQL_SELECT_ALL + " where ending = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_TEACHER_ID = SQL_SELECT_ALL + " where teacher_id = ?";
 
     //language=SQL
     private static final String SQL_INSERT_COURSE = "insert into course(name, beginning, ending, teacher_id) values (?, ?, ?, ?)";
@@ -107,6 +117,21 @@ public class CoursesRepositoryJdbcTemplateImpl implements CoursesRepository {
     @Override
     public List<Course> findAllByName(String name) {
         return jdbcTemplate.query(SQL_SELECT_ALL_BY_COURSE_NAME, coursesWithStudentsResultSetExtractor, name);
+    }
+
+    @Override
+    public List<Course> findAllByBeginning(String beginning) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_BEGINNING, coursesWithStudentsResultSetExtractor, beginning);
+    }
+
+    @Override
+    public List<Course> findAllByEnding(String ending) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_ENDING, coursesWithStudentsResultSetExtractor, ending);
+    }
+
+    @Override
+    public List<Course> findAllByTeacherId(Teacher teacher) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_TEACHER_ID, coursesWithStudentsResultSetExtractor, teacher.getId());
     }
 
     @Override

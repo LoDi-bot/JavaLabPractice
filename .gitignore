@@ -107,3 +107,6 @@ untitled104.iml
 .idea/sqldialects.xml
 .idea/encodings.xml
 JavaLabPractice.iml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+target/classes/application.properties
