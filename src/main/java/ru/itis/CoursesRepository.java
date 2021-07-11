@@ -1,6 +1,7 @@
 package ru.itis;
 
 import ru.itis.models.Course;
+import ru.itis.models.Student;
 import ru.itis.models.Teacher;
 
 import java.util.List;
@@ -18,7 +19,17 @@ public interface CoursesRepository {
 
     List<Course> findAllByEnding(String beginning);
 
-    List<Course> findAllByTeacherId(Teacher teacher);
+    List<Course> findAllByTeacher(Teacher teacher);
+
+    List<Course> findAllByStudent(Student student);
+
+    List<Course> findAllByBeginningOrEnding(String beginning, String ending);
+
+    List<Course> findAllByBeginningAndEnding(String beginning, String ending);
+
+    List<Course> findAllByTeacherOrStudent(Teacher teacher, Student student);
+
+    List<Course> findAllByTeacherAndStudent(Teacher teacher, Student student);
 
     void save(Course course);
 

@@ -38,6 +38,21 @@ public class CoursesRepositoryJdbcTemplateImpl implements CoursesRepository {
     private static final String SQL_SELECT_ALL_BY_TEACHER_ID = SQL_SELECT_ALL + " where teacher_id = ?";
 
     //language=SQL
+    private static final String SQL_SELECT_ALL_BY_STUDENT_ID = SQL_SELECT_ALL + " where d.id in (select course_id from course_student where d.student_id = ?)";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_BEGINNING_OR_ENDING = SQL_SELECT_ALL + " where beginning = ? or ending = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_BEGINNING_AND_ENDING = SQL_SELECT_ALL + " where beginning = ? and ending = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_TEACHER_ID_OR_STUDENT_ID = SQL_SELECT_ALL + " where teacher_id = ? or d.id in (select course_id from course_student where student_id = ?)";
+
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_TEACHER_ID_AND_STUDENT_ID = SQL_SELECT_ALL + " where teacher_id = ? and d.id in (select course_id from course_student where student_id = ?)";
+
+    //language=SQL
     private static final String SQL_INSERT_COURSE = "insert into course(name, beginning, ending, teacher_id) values (?, ?, ?, ?)";
 
     //language=SQL
@@ -130,8 +145,33 @@ public class CoursesRepositoryJdbcTemplateImpl implements CoursesRepository {
     }
 
     @Override
-    public List<Course> findAllByTeacherId(Teacher teacher) {
+    public List<Course> findAllByTeacher(Teacher teacher) {
         return jdbcTemplate.query(SQL_SELECT_ALL_BY_TEACHER_ID, coursesWithStudentsResultSetExtractor, teacher.getId());
+    }
+
+    @Override
+    public List<Course> findAllByStudent(Student student) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_STUDENT_ID, coursesWithStudentsResultSetExtractor, student.getId());
+    }
+
+    @Override
+    public List<Course> findAllByBeginningOrEnding(String beginning, String ending) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_BEGINNING_OR_ENDING, coursesWithStudentsResultSetExtractor, beginning, ending);
+    }
+
+    @Override
+    public List<Course> findAllByBeginningAndEnding(String beginning, String ending) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_BEGINNING_AND_ENDING, coursesWithStudentsResultSetExtractor, beginning, ending);
+    }
+
+    @Override
+    public List<Course> findAllByTeacherOrStudent(Teacher teacher, Student student) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_TEACHER_ID_OR_STUDENT_ID, coursesWithStudentsResultSetExtractor, teacher.getId(), student.getId());
+    }
+
+    @Override
+    public List<Course> findAllByTeacherAndStudent(Teacher teacher, Student student) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_TEACHER_ID_AND_STUDENT_ID, coursesWithStudentsResultSetExtractor, teacher.getId(), student.getId());
     }
 
     @Override
