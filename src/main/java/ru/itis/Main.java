@@ -15,7 +15,7 @@ public class Main {
         Properties properties = new Properties();
 
         try {
-            properties.load(new FileReader("resources/application.properties"));
+            properties.load(new FileReader("src/main/resources/application.properties"));
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
@@ -28,6 +28,9 @@ public class Main {
         config.setMaximumPoolSize(Integer.parseInt(properties.getProperty("db.hikari.pool-size")));
 
         DataSource dataSource = new HikariDataSource(config);
+        CoursesRepositoryJdbcTemplateImpl coursesRepositoryJdbcTemplate = new CoursesRepositoryJdbcTemplateImpl(dataSource);
+        LessonsRepositoryJdbcTemplateImpl lessonsRepositoryJdbcTemplate = new LessonsRepositoryJdbcTemplateImpl(dataSource);
+        lessonsRepositoryJdbcTemplate.findAll().forEach(System.out::println);
         System.out.println("Everything is OK");
     }
 }

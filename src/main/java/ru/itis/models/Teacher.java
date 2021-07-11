@@ -5,15 +5,15 @@ import java.util.List;
 public class Teacher {
     private Integer id;
     private String first_name;
-    private String las_name;
+    private String last_name;
     private Integer experience;
     private List<Course> courses;
 
-    public Teacher(Integer id, String first_name, String las_name, Integer experiene, List<Course> courses) {
+    public Teacher(Integer id, String first_name, String last_name, Integer experience, List<Course> courses) {
         this.id = id;
         this.first_name = first_name;
-        this.las_name = las_name;
-        this.experience = experiene;
+        this.last_name = last_name;
+        this.experience = experience;
         this.courses = courses;
     }
 
@@ -33,12 +33,12 @@ public class Teacher {
         this.first_name = first_name;
     }
 
-    public String getLas_name() {
-        return las_name;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLas_name(String las_name) {
-        this.las_name = las_name;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public Integer getExperience() {
@@ -62,7 +62,7 @@ public class Teacher {
         return "Teacher{" +
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
-                ", las_name='" + las_name + '\'' +
+                ", las_name='" + last_name + '\'' +
                 ", experiene=" + experience +
                 ", courses_id=" + courses.toString() +
                 '}';

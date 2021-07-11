@@ -5,14 +5,14 @@ public class Lesson {
     private String name;
     private String day_of_week;
     private String time;
-    private Integer course_id;
+    private Course course;
 
-    public Lesson(Integer id, String name, String day_of_week, String time, Integer course_id) {
+    public Lesson(Integer id, String name, String day_of_week, String time, Course course) {
         this.id = id;
         this.name = name;
         this.day_of_week = day_of_week;
         this.time = time;
-        this.course_id = course_id;
+        this.course = course;
     }
 
     public Integer getId() {
@@ -47,12 +47,12 @@ public class Lesson {
         this.time = time;
     }
 
-    public Integer getCourse_id() {
-        return course_id;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourse_id(Integer course_id) {
-        this.course_id = course_id;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Lesson {
                 ", name='" + name + '\'' +
                 ", day_of_week='" + day_of_week + '\'' +
                 ", time='" + time + '\'' +
-                ", course_id=" + course_id +
+                ", course=" + course.getName() +
                 '}';
     }
 }

@@ -19,7 +19,7 @@ create table course
 create table lesson
 (
     id          serial primary key,
-    name        varchar(30) not null default 'NAME',
+    name        varchar(35) not null default 'NAME',
     day_of_week varchar(20) not null default 'DAY_OF_WEEK',
     time        varchar(11) not null default 'TIME',
     course_id   integer,
@@ -40,12 +40,4 @@ create table course_student
     student_id integer,
     foreign key (course_id) references course (id),
     foreign key (student_id) references student (id)
-);
-
-create table course_teacher
-(
-    course_id  integer,
-    teacher_id integer,
-    foreign key (course_id) references course (id),
-    foreign key (teacher_id) references teacher (id)
 );

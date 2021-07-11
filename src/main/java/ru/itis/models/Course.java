@@ -7,15 +7,15 @@ public class Course {
     private String name;
     private String beginning;
     private String ending;
-    private Teacher teacher;
+    private Integer teacher_id;
     private List<Student> students;
 
-    public Course(Integer id, String name, String beginning, String ending, Teacher teacher, List<Student> students) {
+    public Course(Integer id, String name, String beginning, String ending, Integer teacher_id, List<Student> students) {
         this.id = id;
         this.name = name;
         this.beginning = beginning;
         this.ending = ending;
-        this.teacher = teacher;
+        this.teacher_id = teacher_id;
         this.students = students;
     }
 
@@ -51,12 +51,12 @@ public class Course {
         this.ending = ending;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public Integer getTeacher_id() {
+        return teacher_id;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacher_id(Integer teacher_id) {
+        this.teacher_id = teacher_id;
     }
 
     public List<Student> getStudents() {
@@ -74,8 +74,8 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", beginning='" + beginning + '\'' +
                 ", ending='" + ending + '\'' +
-                ", teacher_id=" + teacher +
-                ", student_id=" + students.toString() +
+                ", teacher_id=" + teacher_id +
+                ", student_id=" + students +
                 '}';
     }
 }

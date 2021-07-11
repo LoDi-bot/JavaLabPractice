@@ -5,14 +5,21 @@ import java.util.List;
 public class Student {
     private Integer id;
     private String first_name;
-    private String las_name;
+    private String last_name;
     private Integer group_id;
     private List<Course> courses;
 
-    public Student(Integer id, String first_name, String las_name, Integer group_id, List<Course> courses) {
+    public Student(Integer id, String first_name, String last_name, Integer group_id, List<Course> courses) {
         this.id = id;
         this.first_name = first_name;
-        this.las_name = las_name;
+        this.last_name = last_name;
+        this.group_id = group_id;
+        this.courses = courses;
+    }
+
+    public Student(String first_name, String last_name, Integer group_id, List<Course> courses) {
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.group_id = group_id;
         this.courses = courses;
     }
@@ -33,12 +40,12 @@ public class Student {
         this.first_name = first_name;
     }
 
-    public String getLas_name() {
-        return las_name;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLas_name(String las_name) {
-        this.las_name = las_name;
+    public void setLast_name(String las_name) {
+        this.last_name = las_name;
     }
 
     public Integer getGroup_id() {
@@ -62,9 +69,9 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
-                ", las_name='" + las_name + '\'' +
+                ", las_name='" + last_name + '\'' +
                 ", group_id=" + group_id +
-                ", courses_id=" + courses.toString() +
+                ", courses_id=" + courses +
                 '}';
     }
 }
