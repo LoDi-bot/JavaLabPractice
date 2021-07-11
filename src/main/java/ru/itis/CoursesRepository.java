@@ -35,5 +35,5 @@ public interface CoursesRepository {
 
     void update(Course course);
 
-    void delete(Course course);
+    void deleteWithReferences(Course course);
 }

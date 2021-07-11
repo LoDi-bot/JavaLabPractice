@@ -46,6 +46,9 @@ public class LessonsRepositoryJdbcTemplateImpl implements LessonsRepository {
     //language=SQL
     private static final String SQL_DELETE_COURSE_BY_COURSE_ID = "delete from course where id = ?";
 
+    //language=SQL
+    private static final String SQL_DELETE_LESSONS_BY_COURSE_ID = "delete from lesson where course_id = ?";
+
     private final JdbcTemplate jdbcTemplate;
 
     public LessonsRepositoryJdbcTemplateImpl(DataSource dataSource) {
@@ -147,7 +150,7 @@ public class LessonsRepositoryJdbcTemplateImpl implements LessonsRepository {
 
     @Override
     public void deleteLessonWithReferencedCourse(Lesson lesson) {
-        jdbcTemplate.update(SQL_DELETE_LESSON_BY_ID, lesson.getId());
+        jdbcTemplate.update(SQL_DELETE_LESSONS_BY_COURSE_ID, lesson.getCourse().getId());
 
         jdbcTemplate.update(SQL_DELETE_STUDENTS_FROM_COURSE_BY_COURSE_ID, lesson.getCourse().getId());
 
